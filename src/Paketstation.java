@@ -30,32 +30,26 @@ public class Paketstation {
         String empfaengerName = terminal.einlagernInput();
         Kunde kunde = new Kunde(empfaengerName);
         Fach fach = getFirstEmptyFach();
-        Paket paket = new Paket(generateSendugnsnummer(), kunde, fach.getId());
+        Paket paket = new Paket(generateSendugnsnummer(this.faecher.size()), kunde, fach.getId());
         this.pakete.add(paket);
-        terminal.eintlagernOutput();
+        terminal.einlagernOutput();
         fach.setPaket(paket);
     }
 
     public void paketEntnehmen() {
-        try {
-            String empfaengerNameoderSendungsnummer = terminal.entnehmenrnInput();
-            ArrayList<Paket> paketezuentnehmen = this.findPaket(empfaengerNameoderSendungsnummer);
-            for (Paket paket : paketezuentnehmen) {
-                Fach fachzuentleeren = this.findFach(paket);
-                terminal.entnehmenrnOutput(paket);
-                fachzuentleeren.setEmpty();
-                pakete.remove(paket);
-            }
-
-        } catch (Exception e) {
-            System.out.println("\r\nSomething went wrong.\n");
+        String empfaengerNameoderSendungsnummer = terminal.entnehmenInput();
+        ArrayList<Paket> paketezuentnehmen = this.findPaket(empfaengerNameoderSendungsnummer);
+        for (Paket paket : paketezuentnehmen) {
+            Fach fachzuentleeren = this.findFach(paket);
+            terminal.entnehmenOutput(paket);
+            fachzuentleeren.setEmpty();
+            pakete.remove(paket);
         }
-
     }
 
-    private String generateSendugnsnummer() {
+    private String generateSendugnsnummer(int maximum) {
         int min = 1;
-        int max = 9;
+        int max = maximum;
         int random_sendungsnummer = (int) Math.floor(Math.random() * (max - min + 1) + min);
 
         while (sendungsnummerExists(random_sendungsnummer)) {
@@ -109,7 +103,6 @@ public class Paketstation {
                         break;
                     case 3:
                         this.displayStatus();
-                        System.out.print("numero 3");
                         break;
                     case 4:
                         run = false;

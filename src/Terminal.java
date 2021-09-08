@@ -8,7 +8,6 @@ public class Terminal {
         ausgabe_menu();
         System.out.print("Bitte Eingabe tätigen: ");
         int selected = new Scanner(System.in).nextInt();
-        // input.close();
         return selected;
     }
 
@@ -21,22 +20,20 @@ public class Terminal {
     public String einlagernInput() {
         System.out.print("Bitte Empfänger eingeben: ");
         String empfaengerName = new Scanner(System.in).nextLine();
-        // input.close();
         return empfaengerName;
     }
 
-    public void eintlagernOutput() {
+    public void einlagernOutput() {
         System.out.println("Paket wurde eingelagert.\r\n");
     }
 
-    public String entnehmenrnInput() {
+    public String entnehmenInput() {
         System.out.print("Bitte Empfänger oder Nummer eingeben: ");
         String empfaengerNameoderSendungsnummer = new Scanner(System.in).nextLine();
-        // input.close();
         return empfaengerNameoderSendungsnummer;
     }
 
-    public void entnehmenrnOutput(Paket paket) {
+    public void entnehmenOutput(Paket paket) {
         String message = String.format(Locale.GERMANY, "Paket mit der Nr. %s  von %s entnommen\r\n",
                 paket.getSendungsnummer(), paket.getEmpfaenger().getName());
         System.out.print(message);
@@ -47,16 +44,8 @@ public class Terminal {
                 "Fach", "Empfänger", "Sendungsnr");
         System.out.println(header);
 
-        // for ( Fach fach : faecher) {
-            
-        //     String result = (fach.getPaket() != null) ? "This user is over 16." : "This user is under 16.";
-        //     System.out.println(result);
-        // }
-
-
-
         for (Fach fach : faecher) {
-            String message = String.format(Locale.GERMANY, "%-15s%-15s%-15s\r\n", fach.getId(), (fach.getPaket() != null) ? fach.getPaket().getEmpfaenger().getName() : "leer", (fach.getPaket() != null) ? fach.getPaket().getSendungsnummer() : "-");           
+            String message = String.format(Locale.GERMANY, "%-15s%-15s%-15s", fach.getId(), (fach.getPaket() != null) ? fach.getPaket().getEmpfaenger().getName() : "leer", (fach.getPaket() != null) ? fach.getPaket().getSendungsnummer() : "-");           
             System.out.println(message);
         }
     }
