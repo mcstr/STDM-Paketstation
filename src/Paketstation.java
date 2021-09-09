@@ -43,6 +43,8 @@ public class Paketstation {
             Fach fachzuentleeren = this.findFach(paket);
             terminal.entnehmenOutput(paket);
             fachzuentleeren.setEmpty();
+            int index = sendungsnummern.indexOf(Integer.parseInt(paket.getSendungsnummer()));
+            sendungsnummern.remove(index);
             pakete.remove(paket);
         }
     }
@@ -96,7 +98,12 @@ public class Paketstation {
 
                 switch (selected) {
                     case 1:
-                        this.paketEinlagern();
+                        if (pakete.size() == faecher.size()) {
+                            System.out.println("Kein Fächer frei!");
+                            run = false;
+                        }else {
+                            this.paketEinlagern();
+                        }
                         break;
                     case 2:
                         this.paketEntnehmen();
