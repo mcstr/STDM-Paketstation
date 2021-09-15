@@ -99,9 +99,9 @@ public class Paketstation {
                 switch (selected) {
                     case 1:
                         if (pakete.size() == faecher.size()) {
-                            System.out.println("Kein Fächer frei!");
+                            System.out.println("Tut uns Leid, aber es ist kein Fächer frei!");
                             run = false;
-                        }else {
+                        } else {
                             this.paketEinlagern();
                         }
                         break;
@@ -117,7 +117,7 @@ public class Paketstation {
                 }
 
             } catch (Exception e) {
-                System.err.println("\r\nPlease enter one of the above numbers\r\n");
+                System.err.println("\r\nBitte geben Sie eine der oben genannten Nummern ein\r\n");
             }
         }
 

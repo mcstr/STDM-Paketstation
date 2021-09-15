@@ -3,21 +3,17 @@ public class Paket {
     private Kunde empfaenger;
     private String fachId;
 
-
-    public Paket(String sendungsnummer, Kunde empfaenger, String fachId)
-    {
+    public Paket(String sendungsnummer, Kunde empfaenger, String fachId) {
         this.sendungsnummer = sendungsnummer;
         this.empfaenger = empfaenger;
         this.fachId = fachId;
     }
 
-    public String getSendungsnummer()
-    {
+    public String getSendungsnummer() {
         return this.sendungsnummer;
     }
 
-    public Kunde getEmpfaenger()
-    {
+    public Kunde getEmpfaenger() {
         return this.empfaenger;
     }
 

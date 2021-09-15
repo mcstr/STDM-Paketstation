@@ -3,12 +3,18 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Terminal {
+    Scanner scanner;
+
+    public Terminal() {
+        this.scanner = new Scanner(System.in);
+    }
 
     public int menuOne() {
         ausgabe_menu();
         System.out.print("Bitte Eingabe tätigen: ");
-        int selected = new Scanner(System.in).nextInt();
+        int selected = this.scanner.nextInt();
         return selected;
+        
     }
 
     public void ausgabe_menu() {
@@ -19,7 +25,7 @@ public class Terminal {
 
     public String einlagernInput() {
         System.out.print("Bitte Empfänger eingeben: ");
-        String empfaengerName = new Scanner(System.in).nextLine();
+        String empfaengerName = this.scanner.next();
         return empfaengerName;
     }
 
@@ -29,7 +35,7 @@ public class Terminal {
 
     public String entnehmenInput() {
         System.out.print("Bitte Empfänger oder Nummer eingeben: ");
-        String empfaengerNameoderSendungsnummer = new Scanner(System.in).nextLine();
+        String empfaengerNameoderSendungsnummer = this.scanner.next();
         return empfaengerNameoderSendungsnummer;
     }
 
@@ -45,7 +51,9 @@ public class Terminal {
         System.out.println(header);
 
         for (Fach fach : faecher) {
-            String message = String.format(Locale.GERMANY, "%-15s%-15s%-15s", fach.getId(), (fach.getPaket() != null) ? fach.getPaket().getEmpfaenger().getName() : "leer", (fach.getPaket() != null) ? fach.getPaket().getSendungsnummer() : "-");           
+            String message = String.format(Locale.GERMANY, "%-15s%-15s%-15s", fach.getId(),
+                    (fach.getPaket() != null) ? fach.getPaket().getEmpfaenger().getName() : "leer",
+                    (fach.getPaket() != null) ? fach.getPaket().getSendungsnummer() : "-");
             System.out.println(message);
         }
     }
